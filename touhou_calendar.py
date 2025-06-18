@@ -124,6 +124,22 @@ def format_discord_embed(days: List[TouhouDay]) -> dict:
         "description": "\n".join(day_messages),
     }
 
+
+def format_telegram_message(days: List[TouhouDay]) -> str:
+    day_messages: List[str] = []
+    for day in days:
+        tags: List[str] = []
+        for tag in day.tags:
+            taglinks: List[str] = []
+            if tag.is_pixiv():
+                taglinks.append(f"[pixiv]({tag.pixiv_link()})")
+            if tag.is_twitter():
+                taglinks.append(f"[twitter]({tag.twitter_link()})")
+            tags.append(f"#{tag.name} ({'|'.join(taglinks)})")
+
+        day_messages.append(f"{day.message} \n{'\n'.join(tags)}  \n*{day.explanation_short}*")
+    return "\n\n".join(day_messages)
+
 def format_upcoming_twitter(startdate: datetime.date, enddate: datetime.date) -> List[str]:
     lines: List[str] = []
     for date, touhoudays in upcoming_days(startdate, enddate):
@@ -154,3 +170,11 @@ def format_upcoming_discord_embed(startdate: datetime.date, enddate: datetime.da
         "description": "\n".join(lines),
     }
 
+
+def format_upcoming_telegram_message(startdate: datetime.date, enddate: datetime.date) -> dict:
+    lines: List[str] = []
+    for date, touhoudays in upcoming_days(startdate, enddate):
+        lines.append(
+            f"[{date.month}/{date.day}: {', '.join(day.name for day in touhoudays)}](https://touhoucalendar.github.io/#{date.month}-{date.day})"
+        )
+    return "Upcoming Days:\n" + "\n".join(lines)
