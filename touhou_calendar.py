@@ -138,7 +138,7 @@ def format_telegram_message(days: List[TouhouDay]) -> str:
             tags.append(f"#{tag.name} ({'|'.join(taglinks)})")
 
         day_messages.append(f"{day.message} \n{'\n'.join(tags)}  \n*{day.explanation_short}*")
-    return "\n\n".join(day_messages)
+    return day_messages
 
 def format_upcoming_twitter(startdate: datetime.date, enddate: datetime.date) -> List[str]:
     lines: List[str] = []

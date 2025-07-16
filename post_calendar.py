@@ -54,7 +54,7 @@ if date_utc.weekday() == 6 and not args.today_only:
 
 if touhoudays is not None:
     embeds.append(format_discord_embed(touhoudays))
-    telegram_messages.append(format_telegram_message(touhoudays))
+    telegram_messages.extend(format_telegram_message(touhoudays))
 
 
 if args.twitter:
@@ -96,23 +96,23 @@ if args.discord and len(embeds) > 0:
                 logging.error('Failed to send Discord message {}'.format(webhook_url))
 
 if args.telegram and len(telegram_messages) > 0:
-    message = "\n\n".join(telegram_messages)
-    if args.dry:
-        print(message)
-    else:
-        import requests
-        TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
-        TELEGRAM_CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
-        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-        payload = {
-            "chat_id": TELEGRAM_CHAT_ID,
-            "text": message,
-            "parse_mode": "Markdown",
-            "disable_web_page_preview": True
-        }
-        try:
-            response = requests.post(url, data=payload)
-            response.raise_for_status()
-        except requests.exceptions.HTTPError:
-            print(f"Failed to send Telegram message: {response.text}")
-        print(response.json())
+    for message in telegram_messages:
+        if args.dry:
+            print(message)
+        else:
+            import requests
+            TELEGRAM_BOT_TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
+            TELEGRAM_CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
+            url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+            payload = {
+                "chat_id": TELEGRAM_CHAT_ID,
+                "text": message,
+                "parse_mode": "Markdown",
+                "disable_web_page_preview": True
+            }
+            try:
+                response = requests.post(url, data=payload)
+                response.raise_for_status()
+            except requests.exceptions.HTTPError:
+                print(f"Failed to send Telegram message: {response.text}")
+            print(response.json())
