@@ -110,6 +110,21 @@ citations:
    url: http://dic.pixiv.net/a/2月8日は久侘歌の日
 ---
 month: 2
+day: 8
+name: Kogasa Day
+tags:
+ - name: 2月8日は小傘の日
+   platforms: [twitter, pixiv]
+characters: [Kogasa]
+message: 2/8 is **Kogasa Day**! ☂️
+explanation: >
+  February 8th is Hari-kuyo day in the Kanto region of Japan. This is a traditional memorial service for broken needles and old tools.
+  Kogasa is a tsukumogami (an object that gained a soul). In the Kanto region and surrounding areas, it is said that the one eyed yōkai appears on this night - Kogasa is one eyed umbrella yōkai.
+citations:
+ - name: Pixiv Dictionary
+   url: http://dic.pixiv.net/a/2月8日は小傘の日
+---
+month: 2
 day: 9
 name: Phantasmagoria of Dim. Dream Day
 tags:
