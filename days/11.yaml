@@ -143,6 +143,20 @@ explanation: >
 citations: # Todo: Find one
 ---
 month: 11
+day: 20
+name: Good Futo Day
+tags:
+ - name: 11月20日はいい布都ちゃんの日
+   platforms: [twitter, pixiv]
+characters: [Futo]
+message: 11/24 is **Good Futo Day**!
+explanation: >
+ Goroawase: 11(ii)2(fu)0(to)=Ii Futo, "Good Futo"
+citations:
+ - name: Pixiv Dictionary
+   url: https://dic.pixiv.net/a/11月20日は良い布都ちゃんの日のはずだった
+---
+month: 11
 day: 24
 name: Youmu Day
 tags:
